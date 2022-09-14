@@ -11,7 +11,20 @@ ERROR CASES: Return NaN if dateString is null or is not a valid Date.
 NOTES: 		You can use built-in JS Classes such as Date class.
 
 */
-exports.GetDay = function(dateString){
 
+function isInputValidDateString(input) {
+    if (typeof input === 'string') {
+        return !isNaN(Date.parse(input));
+    }
+    return false;
+}
+
+exports.GetDay = function(dateString){
+    if(isInputValidDateString(dateString)) {
+        let inputDate = Date.parse(dateString);
+        let inputUtc = new Date(inputDate);
+        return inputUtc.getDate();
+    }
+    return NaN;
 }
 

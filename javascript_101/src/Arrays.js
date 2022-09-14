@@ -11,9 +11,15 @@ ERROR CASES: If arrayOfNums is null, return NaN.
 			 invoke calls such SumOfArray("hello").
 			 You can use instanceof operator as described in the project page to check this.
 */
-exports.SumOfArray = function(arrayOfNums){
-
-
+exports.SumOfArray = function (arrayOfNums) {
+    if (arrayOfNums instanceof Array) {
+        let result = 0;
+        arrayOfNums.forEach(i => {
+            result += i;
+        });
+        return result;
+    }
+    return NaN;
 }
 
 /*
@@ -30,9 +36,34 @@ ERROR CASES: If arrayOfNums is null, return NaN.
 			 You can use instanceof operator as described in the project page to check this.
 */
 
-exports.SumOfUniqueNumbers = function(arrayOfNums){
+exports.SumOfUniqueNumbers = function (arrayOfNums) {
+    if (arrayOfNums instanceof Array) {
+        let arrayOfNumsSet = new Set(arrayOfNums);
+        let result = 0;
+        arrayOfNumsSet.forEach(i => {
+            result += i;
+        });
+        return result;
+    }
+    return NaN;
+}
 
 
+function isArrayValid2dSquareArray(array) {
+    if (array instanceof Array) {
+        let len = array[0].length;
+        array.forEach(subArray => {
+            if (subArray instanceof Array) {
+                if (subArray.length !== len) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        });
+        return true;
+    }
+    return false;
 }
 
 /*
@@ -50,7 +81,14 @@ ERROR CASES: If array2d is null, return NaN.
 			 If array2d is a 2-d array with different dimensions, return NaN.
 */
 
-exports.SumOfDiagonalCells = function(array2d){
-
-
+exports.SumOfDiagonalCells = function (array2d) {
+    if (isArrayValid2dSquareArray(array2d)) {
+        let len = array2d.length;
+        let result = 0;
+        for (let i = 0; i < len; i++) {
+            result += array2d[i][i];
+        }
+        return result;
+    }
+    return NaN;
 }

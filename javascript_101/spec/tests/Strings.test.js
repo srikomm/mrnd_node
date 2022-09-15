@@ -54,6 +54,7 @@ describe("JSIntro-GetFirstNames", function () {
     });
 
 });
+
 describe("JSIntro-CreateParagraph", function () {
 
     it("should return nothing", function () {

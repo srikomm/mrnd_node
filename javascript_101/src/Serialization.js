@@ -11,8 +11,10 @@ ERROR CASES: Return NaN if str is null or if it does not represent a number.
 NOTES: You can use built-in JS Functions to implement your solution.
 */
 exports.ParseNumber = function(str){
-
-
+    if (str === null){
+        return NaN;
+    }
+    return Number(str);
 }
 
 /*
@@ -28,10 +30,19 @@ ERROR CASES: Return Empty String if num is not of type number.
 NOTES: You can use built-in JS Functions to implement your solution.
 */
 exports.ConvertNumberToString = function(num){
-
-
+    if ((typeof num) === 'number'){
+        return String(num);
+    }
+    return '';
 }
 
+
+function isInputValidDateString(input) {
+    if (typeof input === 'string') {
+        return !isNaN(Date.parse(input));
+    }
+    return false;
+}
 
 /*
 OVERVIEW: 	Write a function that parses a string into a Date object.
@@ -48,9 +59,10 @@ NOTES: You can use built-in JS Functions to implement your solution.
 */
 
 exports.ParseDate = function(str){
-
-
-
+    if (isInputValidDateString(str)) {
+        return new Date(Date.parse(str));
+    }
+    return null;
 }
 
 /*
@@ -68,7 +80,10 @@ NOTES: You can use built-in JS Functions to implement your solution.
 */
 
 exports.ConvertDateToString = function(dateValue){
-
+    if (dateValue instanceof Date){
+        return dateValue.toDateString();
+    }
+    return '';
 }
 
 /*
@@ -79,7 +94,7 @@ OVERVIEW: 	Parse a string containing a comma seperated sequence of numbers
 
 INPUTS: 	str - input string.
 
-OUTPUT: 	Return an array the string representing the date.
+OUTPUT: 	Return an array containing the numbers.
 
 ERROR CASES: Return Empty array if str is null or not of type string.
 
@@ -87,12 +102,18 @@ NOTES: You can use built-in JS Functions to implement your solution.
 */
 
 exports.ParseStringOfNumbers = function(str){
+    if ((typeof str === 'string') && (str.length > 0)){
+        let result = [];
+        str.split(',').forEach(i => result.push(Number(i)));
+        return result;
+    }
+    return [];
 }
 
 /*
 OVERVIEW: 	Convert an array of numbers into a string representation where the numbers are comma seperated.
 
-			Example: ConvertArrayOfNumbersToString([]) ("1,2,3") should return the array [1,2,3]
+			Example: ConvertArrayOfNumbersToString("1,2,3") should return the array [1,2,3]
 
 INPUTS: 	obj - array of numbers.
 
@@ -104,8 +125,10 @@ NOTES: You can use built-in JS Functions to implement your solution.
 */
 
 exports.ConvertArrayOfNumbersToString = function(obj){
-
-
+    if(obj instanceof Array){
+        return obj.join(',');
+    }
+    return '';
 }
 
 
@@ -126,7 +149,14 @@ NOTES: 		1) You can use built-in JS Functions to implement your solution.
 */
 
 exports.ConvertStringToObject = function(str){
-
+    if (((typeof str) === "string") && (str.length > 0)) {
+        try {
+            return JSON.parse(str);
+        } catch (e) {
+            return null;
+        }
+    }
+    return null;
 }
 
 /*
@@ -144,8 +174,16 @@ NOTES: 		You can use built-in JS Functions to implement your solution.
 */
 
 exports.ConvertObjectToString = function(obj){
-
-
+    if ((obj instanceof Object)){
+        try {
+            return JSON.stringify(obj);
+        } catch (e) {
+            return null;
+        }
+    }
+    return null;
 }
 
-
+/**
+ * https://stackoverflow.com/questions/899574/what-is-the-difference-between-typeof-and-instanceof-and-when-should-one-be-used
+ */

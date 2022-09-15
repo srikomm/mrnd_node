@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/Objects");
+const JSIntro = require("../../src/001_javascript_101/Objects");
 
 describe("JSIntro-GetObjectPropertyNames", function () {
 

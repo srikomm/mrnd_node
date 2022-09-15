@@ -1,5 +1,5 @@
 describe("Tutorial Test Suite", function () {
-    const tutorial = require("../../src/Tutorial");
+    const tutorial = require("../../src/001_javascript_101/Tutorial");
 
     it("should run tutorials", function () {
         tutorial.Variables();

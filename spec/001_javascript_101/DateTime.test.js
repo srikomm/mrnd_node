@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/DateTime");
+const JSIntro = require("../../src/001_javascript_101/DateTime");
 
 describe("JSIntro-GetDay", function () {
 

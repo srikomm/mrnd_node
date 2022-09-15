@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/Arrays");
+const JSIntro = require("../../src/001_javascript_101/Arrays");
 
 describe("JSIntro-SumOfArray", function () {
 

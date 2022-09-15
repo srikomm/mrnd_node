@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/JSIntro");
+const JSIntro = require("../../src/001_javascript_101/JSIntro");
 
 describe("JSIntro-Sum", function () {
 

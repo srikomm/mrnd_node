@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/Strings");
+const JSIntro = require("../../src/001_javascript_101/Strings");
 
 describe("JSIntro-ReverseString", function () {
 

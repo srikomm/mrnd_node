@@ -13,7 +13,6 @@
     "glob": "^7.2.3",
     "inflight": "^1.0.6",
     "inherits": "^2.0.4",
-    "jasmine-core": "^4.4.0",
     "minimatch": "^3.1.2",
     "once": "^1.4.0",
     "path-is-absolute": "^1.0.1",
@@ -32,5 +31,5 @@
     "url": "https://github.com/srikomm/mrnd_node/issues"
   },
   "homepage": "https://github.com/srikomm/mrnd_node#readme",
-  "description": ""
+  "description": "mrnd node course"
 }

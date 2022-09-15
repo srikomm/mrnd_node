@@ -8,8 +8,8 @@ OUTPUT: 	a new string that is reverse of str
 ERROR CASES: Return null if str is null or not of type string.
 
 */
-exports.ReverseString = function(str){
-    if ((typeof str) === 'string'){
+exports.ReverseString = function (str) {
+    if ((typeof str) === 'string') {
         return str.split('').reverse().join('');
     }
     return null;
@@ -30,8 +30,12 @@ NOTES: You can use built-in JS Functions to solve this problem.
 
 */
 
-exports.GetFirstNames = function(str){
+exports.GetFirstNames = function (str) {
     if ((typeof str) === 'string') {
+        if (str.length <= 1) {
+            return []
+        }
+
         let result = [];
         str.split(';').forEach(x => {
             result.push(x.split(',')[1]);
@@ -58,9 +62,9 @@ ERROR CASES: 	1) Return null if arrayOfStrings is null
 NOTES: You can use built-in JS Functions to solve this problem.
 
 */
-exports.CreateParagraph = function(arrayOfStrings){
-    if (arrayOfStrings instanceof Array){
-        if (arrayOfStrings.length === 0){
+exports.CreateParagraph = function (arrayOfStrings) {
+    if (arrayOfStrings instanceof Array) {
+        if (arrayOfStrings.length === 0) {
             return '';
         }
         return arrayOfStrings.join('.') + '.';

@@ -1,4 +1,4 @@
-const JSIntro = require("../../src/Serialization");
+const JSIntro = require("../../src/001_javascript_101/Serialization");
 
 describe("JSIntro-ParseNumber", function () {
 

@@ -2,9 +2,15 @@ const JSIntro = require("../../src/Serialization");
 
 describe("JSIntro-ParseNumber", function () {
 
-    it("should return nothing", function () {
+    it("should return nothing for null", function () {
 
         const number = JSIntro.ParseNumber(null);
+        expect(isNaN(number)).toEqual(true);
+    });
+
+    it("should return nothing for non-number string", function () {
+
+        const number = JSIntro.ParseNumber("number");
         expect(isNaN(number)).toEqual(true);
     });
 

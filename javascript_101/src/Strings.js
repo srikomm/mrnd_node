@@ -9,8 +9,10 @@ ERROR CASES: Return null if str is null or not of type string.
 
 */
 exports.ReverseString = function(str){
-
-
+    if ((typeof str) === 'string'){
+        return str.split('').reverse().join('');
+    }
+    return null;
 }
 
 /*
@@ -29,6 +31,14 @@ NOTES: You can use built-in JS Functions to solve this problem.
 */
 
 exports.GetFirstNames = function(str){
+    if ((typeof str) === 'string') {
+        let result = [];
+        str.split(';').forEach(x => {
+            result.push(x.split(',')[1]);
+        });
+        return result;
+    }
+    return null;
 }
 
 
@@ -49,6 +59,12 @@ NOTES: You can use built-in JS Functions to solve this problem.
 
 */
 exports.CreateParagraph = function(arrayOfStrings){
-
+    if (arrayOfStrings instanceof Array){
+        if (arrayOfStrings.length === 0){
+            return '';
+        }
+        return arrayOfStrings.join('.') + '.';
+    }
+    return null;
 }
 

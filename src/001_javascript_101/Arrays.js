@@ -23,7 +23,7 @@ exports.SumOfArray = function (arrayOfNums) {
 }
 
 /*
-OVERVIEW: 	Implement a function that sums only the unique umbers in the given array.
+OVERVIEW: 	Implement a function that sums only the unique numbers in the given array.
 			Example: SumOfUniqueNumbers([2,3,3,2]) should return a value of 2+3=5.
 
 INPUTS: 	arrayOfNums: An array of numbers

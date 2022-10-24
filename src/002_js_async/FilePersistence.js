@@ -17,6 +17,21 @@ const Student = function (id, firstName, lastName, gender, totalMarks) {
     this.totalMarks = totalMarks;
 };
 
+function get_filter(key) {
+    switch (key) {
+        case 'id':
+            return 0;
+        case 'firstName':
+            return 1;
+        case 'lastName':
+            return 2;
+        case 'gender':
+            return 3;
+        case 'totalMarks':
+            return 4;
+    }
+}
+
 /**
  Method used to read students data from the file.
 
@@ -54,7 +69,62 @@ const Student = function (id, firstName, lastName, gender, totalMarks) {
  Return all the male students having marks greater than or equal to 90!!
  */
 exports.getStudents = function (filters, callback) {
-
+    const fs = require("fs");
+    const path = require('path');
+    const fileName = path.join(__dirname, '..', '..', 'files') + "/students.txt";
+    fs.readFile(fileName, 'utf-8', function (err, data) {
+        let i;
+        data = data.toString().split('\n');
+        for (i = 0; i < data.length; i++) {
+            data[i] = data[i].split(' ');
+        }
+        data = data.filter(function (stu) {
+            return stu[0].length > 0;
+        });
+        const result = [];
+        let stu;
+        if (filters == null) {
+            for (i = 0; i < data.length; i++) {
+                stu = new Student(parseInt(data[i][0]), data[i][1], data[i][2], data[i][3], parseInt(data[i][4]));
+                result.push(stu);
+            }
+            return callback(null, result);
+        }
+        for (i = 0; i < data.length; i++) {
+            let flag = 0;
+            for (let j = 0; j < filters.length; j++) {
+                const k = get_filter(filters[j].key);
+                switch (filters[j].optype) {
+                    case 'EQ':
+                        flag = (data[i][k] === filters[j].value);
+                        break;
+                    case 'NE':
+                        flag = (data[i][k] !== filters[j].value);
+                        break;
+                    case 'LT':
+                        flag = (data[i][k] < filters[j].value);
+                        break;
+                    case 'GT':
+                        flag = (data[i][k] > filters[j].value);
+                        break;
+                    case 'GTE':
+                        flag = (data[i][k] >= filters[j].value);
+                        break;
+                    case 'LTE':
+                        flag = (data[i][k] <= filters[j].value);
+                        break;
+                    default:
+                        flag = (data[i][k] === filters[j].value);
+                        break;
+                }
+            }
+            if (flag) {
+                stu = new Student(parseInt(data[i][0]), data[i][1], data[i][2], data[i][3], parseInt(data[i][4]));
+                result.push(stu);
+            }
+        }
+        return callback(null, result);
+    });
 };
 
 /**
@@ -71,5 +141,32 @@ exports.getStudents = function (filters, callback) {
  Throw appropriate errors for invalid values. (Refer error codes from the page top)
  */
 exports.createStudent = function (student, callback) {
-
+    let err = {};
+    if (!(student.hasOwnProperty('id')) || !(student.hasOwnProperty('firstName')) || !(student.hasOwnProperty('lastName')) || !(student.hasOwnProperty('gender')) || !(student.hasOwnProperty('totalMarks'))) {
+        err.code = 1003;
+        err.message = 'Mandatory Values not sent';
+        return callback(err);
+    }
+    if ((student.gender !== 'male' && student.gender !== 'female') || student.totalMarks < 0 || student.totalMarks > 100) {
+        err.code = 1001;
+        err.message = 'Invalid filters';
+        return callback(err);
+    }
+    const fs = require("fs");
+    const path = require('path');
+    const fileName = path.join(__dirname, '..', '..', 'files') + "/students.txt";
+    let data = fs.readFileSync(fileName, 'utf8');
+    data = data.toString().split('\n');
+    for (let i = 0; i < data.length; i++) {
+        data[i] = data[i].split(' ');
+        if (data[i][0] === student.id.toString()) {
+            err = {};
+            err.code = 1004;
+            err.message = 'Record already exists';
+            return callback(err, null);
+        }
+    }
+    const res = student.id.toString() + ' ' + student.firstName.toString() + ' ' + student.lastName.toString() + ' ' + student.gender.toString() + ' ' + student.totalMarks.toString() + '\n';
+    fs.appendFileSync(fileName, res, 'utf-8');
+    return callback(null);
 };

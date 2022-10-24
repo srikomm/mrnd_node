@@ -34,8 +34,7 @@ describe("FilePersistence Async Test Suite ", function () {
             });
         } catch (e) {
             console.log(e);
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -48,8 +47,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -62,8 +60,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -76,8 +73,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -95,8 +91,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -108,8 +103,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -127,8 +121,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -140,8 +133,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -162,8 +154,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 
@@ -175,8 +166,7 @@ describe("FilePersistence Async Test Suite ", function () {
                 done();
             });
         } catch (e) {
-            this.fail(Error("Error caused with " + JSON.stringify(e)));
-            done();
+            throw new Error("Error caused with " + JSON.stringify(e));
         }
     });
 });

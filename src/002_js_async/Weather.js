@@ -60,7 +60,8 @@ exports.findCurrentTemperatureByCityName = function (cityName, callback) {
         err.code = '502';
         return callback(err, null);
     }
-    getWeatherByCityName(cityName, '68410394bc6d84cbbac16d4419cf93a7', function(err, data){
+    // replace the APPID with actual value while running the tests
+    getWeatherByCityName(cityName, 'XXXXXXXXXXXXXXXXXXXX', function(err, data){
         if(err){
             return callback(err);
         }

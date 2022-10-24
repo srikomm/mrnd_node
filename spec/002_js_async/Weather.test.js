@@ -3,7 +3,8 @@ const request = require('request');
 const Weather = require("../../src/002_js_async/Weather.js");
 
 const getWeatherByCityName = function (cityName, callback) {
-    const queryParams = {q: cityName, APPID: '68410394bc6d84cbbac16d4419cf93a7'};
+    // replace the APPID with actual value while running the tests
+    const queryParams = {q: cityName, APPID: 'XXXXXXXXXXXXXXXXX'};
 
     request({url: "https://api.openweathermap.org/data/2.5/weather", qs: queryParams}, function (err, response, body) {
         callback(err, response, body);

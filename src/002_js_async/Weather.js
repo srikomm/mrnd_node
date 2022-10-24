@@ -34,7 +34,7 @@ const getWeatherByCityName = function (cityName, appID, callback) {
 
  Use getWeatherByCityName to fetch the weather details of a particular city
 
- cityName is given as a input.
+ cityName is given as an input.
 
  Return the temperature of a city in celsius in the callback in error first way.
 

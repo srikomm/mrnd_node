@@ -26,7 +26,21 @@
  Returns the JSON of weather data in the callback in error first way.
  */
 const getWeatherByCityName = function (cityName, appID, callback) {
+    const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    const req = new XMLHttpRequest();
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + appID;
+    req.open('GET', url, false);
+    req.send(null);
 
+    if(req.status === 200) {
+        const res = JSON.parse(req.responseText);
+        return callback(null, res);
+    }
+    else{
+        const err = {};
+        err.code = 502;
+        return callback(err);
+    }
 };
 
 /**
@@ -41,5 +55,19 @@ const getWeatherByCityName = function (cityName, appID, callback) {
  Handle the error scenarios appropriately and map the error message in response body to the error object
  */
 exports.findCurrentTemperatureByCityName = function (cityName, callback) {
-
+    if(cityName === ""){
+        const err = {};
+        err.code = '502';
+        return callback(err, null);
+    }
+    getWeatherByCityName(cityName, '68410394bc6d84cbbac16d4419cf93a7', function(err, data){
+        if(err){
+            return callback(err);
+        }
+        //data = JSON.parse(data);//This must be uncommented if we use request method!
+        if(data && data["main"] && data["main"]["temp"] !== undefined){
+            const result = data.main.temp - 273.15;
+            return callback(null, result);
+        }
+    });
 };
